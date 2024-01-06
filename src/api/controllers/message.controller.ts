@@ -30,9 +30,13 @@ export default class MessageController {
   };
 
   static createMessage = async (req: Request, res: Response) => {
+    console.log(req.body.date);
     const body = { ...req.body, date: new Date(req.body.date) };
     const validatedMessage = messageSchema.safeParse(body);
-    if (!validatedMessage.success) return res.status(400).json({ error: JSON.parse(validatedMessage.error.message) });
+    if (!validatedMessage.success) {
+      console.log(validatedMessage.error.format());
+      return res.status(400).json({ error: 'Error en input' });
+    }
     const createdMessage = await messageModel.create({ data: validatedMessage.data });
     return res.status(200).json(createdMessage);
   };
