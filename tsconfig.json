@@ -8,7 +8,7 @@
 
     /* Emit */
     "sourceMap": true /* Create source map files for emitted JavaScript files. */,
-    "outDir": "./" /* Specify an output folder for all emitted files. */,
+    "outDir": "build/" /* Specify an output folder for all emitted files. */,
 
     /* Interop Constraints */
     // "isolatedModules": true,                          /* Ensure that each file can be safely transpiled without relying on other imports. */

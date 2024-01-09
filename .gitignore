@@ -1,7 +1,4 @@
 node_modules
-dist
+build
 .env
 .vscode
-**/migrations/
-**/**.db**
-db_commands.txt
