@@ -3,7 +3,7 @@ import MessageController from '../controllers/message.controller';
 
 const messageRouter = Router();
 
-messageRouter.get('/', MessageController.getAll);
+// messageRouter.get('/', MessageController.getAll);
 
 messageRouter.post('/', MessageController.create);
 

@@ -22,7 +22,7 @@ const create = async (data: Watermark) => {
   const validatedWatermark = watermarkSchema.safeParse(data);
   if (!validatedWatermark.success) {
     console.log(validatedWatermark.error.format());
-    throw new Error('Input inválido');
+    throw new Error('Invalid Watermark Input');
   }
   const { date } = data;
 

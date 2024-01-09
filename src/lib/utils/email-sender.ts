@@ -10,14 +10,13 @@ interface IResendEmail {
   html: string;
 }
 
-// Función para enviar email con resend
+// Function to send email with the message requested.
 export const sendEmail = async ({ from, to, subject, html }: IResendEmail) => {
-  console.log('sending email');
   const result = await resend.emails.send({
     from: `${from} <daily-regards@resend.dev>`,
     to,
     subject,
     html,
   });
-  console.log(result);
+  if (result.error) console.log('Error sending email with RESEND', result.error);
 };

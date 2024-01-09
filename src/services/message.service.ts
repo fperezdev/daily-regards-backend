@@ -1,10 +1,6 @@
 import { client } from '../index';
 import { messageSchema } from '../lib/schemas';
-import { Message } from '../lib/types';
-
-type SelectOptions = {
-  whereClause?: string;
-};
+import { Message, SelectOptions } from '../lib/types';
 
 const getMany = async (options?: SelectOptions) => {
   const query = `
@@ -19,7 +15,7 @@ const create = async (data: Message) => {
   const validatedMessage = messageSchema.safeParse(data);
   if (!validatedMessage.success) {
     console.log(validatedMessage.error.format());
-    throw new Error('Input inválido');
+    throw new Error('Invalid Message Input');
   }
   const { from, to, subject, date } = data;
 
