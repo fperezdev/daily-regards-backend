@@ -13,6 +13,7 @@ client.connect();
 
 // API
 const app = express();
+app.set('trust proxy', Number(process.env.PROXY_NUMBER)); // For Railway proxy
 app.use(json());
 app.use(router);
 app.listen(PORT, () => {
