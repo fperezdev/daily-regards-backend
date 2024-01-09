@@ -12,11 +12,11 @@ export async function generateContent(subject: string) {
     messages: [
       {
         role: 'user',
-        content: `Necesito un mensaje para enviar a una persona con la temática '${subject}'. El mensaje debe contener entre 40 y 50 caracteres.`,
+        content: `Necesito un mensaje para enviar a una persona con la temática '${subject}'. El mensaje debe contener entre 50 y 70 palabras.`,
       },
     ],
     temperature: 0.7,
-    max_tokens: 50,
+    max_tokens: 100,
   });
   const content = completion.choices[0]?.message.content;
   return content?.replace(/^"(.*)"$/, '$1'); // Remove outer quotes
