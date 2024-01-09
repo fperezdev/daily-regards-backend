@@ -1,13 +1,24 @@
-import express from 'express';
-import 'dotenv/config';
+import { Client } from 'pg';
+import express, { json } from 'express';
+import router from './api/routes/index.router';
+import MessageSender from './core/message-sender';
+import { DATABASE_URL, PORT } from './lib/envs';
 
+// Set server timezone to UTC
+process.env.TZ = 'UTC';
+
+// DB
+export const client = new Client(DATABASE_URL);
+client.connect();
+
+// API
 const app = express();
-const port = process.env.PORT ?? 3001;
-
-app.get('/', (_req, res) => {
-  res.send('Express + TypeScript Server');
+app.set('trust proxy', Number(process.env.PROXY_NUMBER)); // For Railway proxy
+app.use(json());
+app.use(router);
+app.listen(PORT, () => {
+  console.log(`Server is running ${process.env.NODE_ENV === 'development' ? `at http://localhost:${PORT}` : ''}`);
 });
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
-});
+// Sender Cron Job
+MessageSender.start();
