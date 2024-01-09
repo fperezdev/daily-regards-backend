@@ -16,7 +16,7 @@ export async function generateContent(subject: string) {
       },
     ],
     temperature: 0.7,
-    max_tokens: 100,
+    max_tokens: 150,
   });
   const content = completion.choices[0]?.message.content;
   return content?.replace(/^"(.*)"$/, '$1'); // Remove outer quotes
